@@ -72,7 +72,7 @@ public class AdminController {
 
     @PostMapping
     public String createUser(@ModelAttribute("newUser")@Valid User user, BindingResult bindingResult) {
-//        customValid.validate(user,bindingResult);
+//      customValid.validate(user,bindingResult);
         if(bindingResult.hasErrors()) {
             return "admin/all";
         }
@@ -81,14 +81,8 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}")
-    public String updateUser(@PathVariable("id")long id,
-                             @ModelAttribute("userEd")  User user
-                             ) {
-        System.out.println("goby");
-
-        System.out.println("popopopopo");
+    public String updateUser(@PathVariable("id")long id, @ModelAttribute("userEd")  User user) {
         userService.update(id,user);
-        System.out.println("popsy");
         return "redirect:/admin";
     }
     @DeleteMapping("/user/{id}")
