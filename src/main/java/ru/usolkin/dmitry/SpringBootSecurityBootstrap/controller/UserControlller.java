@@ -27,23 +27,23 @@ public class UserControlller {
         this.regUserService = regUserService;
         this.userService = userService;
     }
-    @GetMapping("/registration")
-    public String newUser(@ModelAttribute("user") User user) {
-        return "/user/registration";
-    }
-
-    @PostMapping ("/registration")
-    public String registration(@ModelAttribute("user")@Valid User user, BindingResult bindingResult) {
-        customValid.validate(user,bindingResult);
-        if(bindingResult.hasErrors()) {
-            return "user/registration";
-        }
-        regUserService.register(user);
-        return "redirect:/login";
-    }
-    @GetMapping("/hello")
+//    @GetMapping("/registration")
+//    public String newUser(@ModelAttribute("user") User user) {
+//        return "/user/registration";
+//    }
+//
+//    @PostMapping ("/registration")
+//    public String registration(@ModelAttribute("user")@Valid User user, BindingResult bindingResult) {
+//        customValid.validate(user,bindingResult);
+//        if(bindingResult.hasErrors()) {
+//            return "user/registration";
+//        }
+//        regUserService.register(user);
+//        return "redirect:/login";
+//    }
+    @GetMapping
     public String getHello(Model model, Principal principal) {
-        model.addAttribute("user",userService.getUserByName(principal.getName()));
+        model.addAttribute("existUser",userService.getUserByName(principal.getName()));
         return "user/userPage";
     }
 }

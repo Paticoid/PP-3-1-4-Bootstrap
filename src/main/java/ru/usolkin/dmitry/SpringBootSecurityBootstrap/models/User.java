@@ -31,18 +31,18 @@ public class User implements UserDetails {
     @Column(name = "id")
     private long id;
     @Column(name = "name")
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 1,max = 20,message = "name should be between 2 and 20 characters")
+//    @NotEmpty(message = "Name should not be empty")
+//    @Size(min = 1,max = 20,message = "name should be between 2 and 20 characters")
     private String name;
     @Column(name = "password")
 
-    @Size( min = 1,max = 100,message = "password should be between 2 and 30 characters")
+//    @Size( min = 1,max = 100,message = "password should be between 2 and 30 characters")
     private String password;
     @Column(name = "age")
     private int age;
     @Column
-    @Email(message = "Age should not be email")
-    @NotEmpty(message = "Email should not empty")
+//    @Email(message = "Age should not be email")
+//    @NotEmpty(message = "Email should not empty")
     private String email;
     @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(name = "users_roles",
@@ -108,7 +108,11 @@ public class User implements UserDetails {
         this.roleList = roleList;
     }
     public String strRole() {
-        return Arrays.toString(roleList.toArray());
+        String role = "";
+        for(Role ex : roleList) {
+           role= role + ex.toString();
+        }
+        return role.replaceAll("ROLE_","");
     }
 
     @Override

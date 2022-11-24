@@ -16,7 +16,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public List<User> allUsers() {
-        return  entityManager.createQuery("SELECT u FROM User u").getResultList();
+        return  entityManager.createQuery("SELECT u FROM User u JOIN FETCH u.roleList").getResultList();
     }
 
     @Override
@@ -42,6 +42,8 @@ public class UserDaoImp implements UserDao {
         user.setName(updateUser.getName());
         user.setAge(updateUser.getAge());
         user.setEmail(updateUser.getEmail());
+        user.setRoleList(updateUser.getRoleList());
+
     }
     @Override
     public void delete(long id) {

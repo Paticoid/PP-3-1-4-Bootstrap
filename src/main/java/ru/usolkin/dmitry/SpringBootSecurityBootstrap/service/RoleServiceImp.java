@@ -4,6 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.usolkin.dmitry.SpringBootSecurityBootstrap.dao.RoleDao;
 import ru.usolkin.dmitry.SpringBootSecurityBootstrap.models.Role;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 public class RoleServiceImp  implements RoleService{
@@ -15,5 +17,10 @@ public class RoleServiceImp  implements RoleService{
     @Override
     public Role showRole(String name) {
         return roleDao.showRole(name);
+    }
+
+    @Override
+    public List<Role> getRoleList() {
+        return roleDao.getRoleList();
     }
 }
